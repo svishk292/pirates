@@ -13,6 +13,7 @@ class Seagull (Context, event.Event):
         self.verbs['chase'] = self
         self.verbs['feed'] = self
         self.verbs['help'] = self
+        self.verbs['read'] = self
         self.result = {}
         self.go = False
 
@@ -40,6 +41,9 @@ class Seagull (Context, event.Event):
             self.go = True
         elif (verb == "help"):
             print ("the seagulls will pester you until you feed them or chase them off")
+            self.go = False
+        elif (verb == "read"):
+            print ("the seagulls will pester ")
             self.go = False
         else:
             print ("it seems the only options here are to feed or chase")
