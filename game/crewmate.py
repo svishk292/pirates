@@ -10,7 +10,7 @@ class CrewMate(Context):
     '''Describes a pirate crewmate. The player controls these.'''
 
     # possible_names = ['alice', 'bob', 'charlie', 'darren', 'eliza', 'francine', 'gale', 'hope']
-    possible_names = ['anne', 'bartholomew', 'benjamin', 'po', 'eliza', 'edward', 'grace', 'henry', 'mary', 'paulsgrave', 'jack', 'turgut', 'william', 'sayyida', 'emanuel', 'peter', 'richard', 'yang']
+    possible_names = ['sumeet', 'krishna', 'dhir', 'prabhshri', 'reeta', 'pratush', 'nilay', 'mansi', 'mary', 'paulsgrave', 'jack', 'turgut', 'william', 'sayyida', 'emanuel', 'peter', 'richard', 'yang']
     longest_name = max([len(c) for c in possible_names] )
     
     def __init__ (self):

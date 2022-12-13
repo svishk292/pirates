@@ -14,6 +14,7 @@ class Ship (Context):
         self.hy = 0
         self.medicine = 5
         self.food = 100
+        self.gold = 500
         self.loc = None
 
         self.verbs['anchor'] = self
@@ -87,7 +88,10 @@ class Ship (Context):
 
     def take_food (self, amt):
         self.food = self.food - amt
-
+        
+    def get_gold (self):
+        return self.gold
+        
     def enter (self):
         pass
         

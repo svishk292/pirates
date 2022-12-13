@@ -8,29 +8,29 @@ import game.config as config
 
 import random
 
-class Whirlpool (Context, location.Location):
+class Blackhole (Context, location.Location):
 
     def __init__ (self, x, y, w):
         Context.__init__(self)
         location.Location.__init__(self, x, y, w)
-        self.verbs['flee'] = self
-        self.verbs['stay'] = self
-        self.name = "whirlpool"
+        self.verbs['move'] = self
+        self.verbs['jump'] = self
+        self.name = "Blackhole"
         self.ship = None
-        self.symbol = "?"
+        self.symbol = "b"
 
     def enter (self, ship):
         self.symbol = "W"
         self.ship = ship
         self.go = False
         while (self.go == False):
-            print ("you have found a whirlpool, what is your command?")
+            print ("you have found a Blackhole, what is your command?")
             Player.get_interaction ([self])
 
 
     def process_verb (self, verb, cmd_list, nouns):
 
-        if (verb == "flee"):
+        if (verb == "move"):
             ''' moved to a random location in the area '''
             destx = random.randrange (-2,3) + self.x
             desty = random.randrange (-2,3) + self.y
@@ -50,21 +50,15 @@ class Whirlpool (Context, location.Location):
             new_loc.enter (s)
             self.go = True
 
-        elif (verb == "stay"):
-            
-            if (random.randint(1,3) == 1):
+        elif (verb == "jump"):
+            if (random.randint(3,4) == 1):
                 config.the_player.gameInProgress = False
-                config.the_player.kill_all_pirates("Drowned in the whirlpool")
-                print ("The ship was destroyed in the whirlpool")
-            
-            elif (random.randint(1,3) == 2):
-                print('you lost crew members')
-                x = random.randint(1,2)
-                lost = 0
-                b = config.the_player.pirates
-                while (lost < x):
-                    b.pop(0)
-                    lost += 1
+                config.the_player.kill_all_pirates("Disappeared in the Blackhole")
+                print ("The ship was destroyed in the Blackhole")
+            elif (random.randint(3,4) == 1):
+                x = x.pop(x)
+                x += 1
+                pass
             else:
                 print ("The ship is somehow holding together")
             self.go = True
@@ -73,10 +67,5 @@ class Whirlpool (Context, location.Location):
         if (self.ship != None):
             self.go = False
             while (self.go == False):
-                print ("you are still at the whirlpool, what is your command?")
+                print ("you are still at the Blackhole, what is your command?")
                 Player.get_interaction ([self])
-'''
-if (random.randint(1,3) == 1):
-                config.the_player.gameInProgress = False
-                config.the_player.kill_all_pirates("Drowned in the whirlpool")
-                print ("The ship was destroyed in the whirlpool")'''

@@ -13,26 +13,22 @@ class Seagull (Context, event.Event):
         self.verbs['chase'] = self
         self.verbs['feed'] = self
         self.verbs['help'] = self
-        self.verbs['read'] = self
+        self.verbs['kill'] = self
         self.result = {}
         self.go = False
 
     def process_verb (self, verb, cmd_list, nouns):
         if (verb == "chase"):
-            self.go = True
-            r = random.randint(1,10)
-            if (r < 5):
-                self.result["message"] = "the seagulls fly off."
-                if (self.seagulls > 1):
-                    self.seagulls = self.seagulls - 1
-            else:
-                c = random.choice(config.the_player.get_pirates())
-                if (c.lucky == True):
-                    self.result["message"] = "luckly, the seagulls fly off."
-                else:
-                    self.result["message"] = c.get_name() + " is attacked by the seagulls."
-                    if (c.inflict_damage (self.seagulls, "Pecked to death by seagulls")):
-                        self.result["message"] = ".. " + c.get_name() + " is pecked to death by the seagulls!"
+             self.result["message"] = "the seagull fly off."
+             self.go = True
+        
+        elif (verb == "kill"):
+             self. result ["newevents"]. append (Seagull())
+             self. result ["message"] = "You killed the seagulls. Now it's your dinner for today"
+             amount = random. randint (15, 18)
+             ship_utility = config.the_player.ship
+             ship_utility.food = ship_utility.food + amount
+             self.go = True
 
         elif (verb == "feed"):
             self.seagulls = self.seagulls + 1
@@ -42,11 +38,8 @@ class Seagull (Context, event.Event):
         elif (verb == "help"):
             print ("the seagulls will pester you until you feed them or chase them off")
             self.go = False
-        elif (verb == "read"):
-            print ("the seagulls will pester ")
-            self.go = False
         else:
-            print ("it seems the only options here are to feed or chase")
+            print ("it seems the only options here are to feed or chase or kill")
             self.go = False
 
 
@@ -59,7 +52,7 @@ class Seagull (Context, event.Event):
         self.result["message"] = "default message"
 
         while (self.go == False):
-            print (str (self.seagulls) + " seagulls has appeared what do you want to do?")
+            print (str (self.seagulls) + " seagulls has appeared what do you want to do? Please tell naa: ")
             Player.get_interaction ([self])
 
         return self.result

@@ -45,23 +45,31 @@ class World (Context):
                 if (self.locs[x][y].name == "ocean") and ((y in range(self.starty-2, self.starty+3)) or (x in range(self.startx-2, self.startx+3))):
                     self.locs[x][y] = cur_island (x, y, self)
                     placed = True
+                    
+        black = blackhole.Blackhole (self.startx - 2, self.starty, self)
+        self.locs[self.startx-2][self.starty] = black
 
         #The pirates apparently got lost in a whirlpool
         whirl = whirlpool.Whirlpool (self.startx + 1, self.starty, self)
         self.locs[self.startx+1][self.starty] = whirl
 
         #Test island: always start off next to a test island. Swap in your island to test yours.
-        testland = island.Island (self.startx, self.starty+1, self)
+        testland = wonderland.Wonderland (self.startx, self.starty+1, self)
         self.locs[self.startx][self.starty+1] = testland
+        
+        testland = island.Island (self.startx, self.starty+3, self)
+        self.locs[self.startx][self.starty+3] = testland
 
         self.events = []
-        self.events.append (lucky.LuckyDay())
-        self.events.append (nothing.Nothing())
-        self.events.append (seagull.Seagull())
-        self.events.append (seagull.Seagull())
-        self.events.append (seagull.Seagull())
-        self.events.append (sickness.Sickness())
-        self.events.append (drowned_pirates.DrownedPirates())
+       # self.events.append (lucky.LuckyDay())
+        #self.events.append (nothing.Nothing())
+        #self.events.append (seagull.Seagull())
+        #self.events.append (seagull.Seagull())
+        #self.events.append (seagull.Seagull())
+        #self.events.append (sickness.Sickness())
+        #self.events.append (drowned_pirates.DrownedPirates())
+        #self.events.append (riding_pirates.RidingPirates())
+        self.events.append (fish.Fish())
         self.nouns["world"] = self
 
     def get_day (self):
