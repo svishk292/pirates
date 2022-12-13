@@ -51,14 +51,20 @@ class Blackhole (Context, location.Location):
             self.go = True
 
         elif (verb == "jump"):
-            if (random.randint(3,4) == 1):
-                config.the_player.gameInProgress = False
+            if (random.randint(1,3) == 1):
                 config.the_player.kill_all_pirates("Disappeared in the Blackhole")
                 print ("The ship was destroyed in the Blackhole")
-            elif (random.randint(3,4) == 1):
-                x = x.pop(x)
-                x += 1
-                pass
+                config.the_player.gameInProgress = False
+                
+                
+            elif (random.randint(1,3) == 2):
+                print('you lost crew members')
+                x = random.randint(1,2)
+                lost = 0
+                b = config.the_player.pirates
+                while (lost < x):
+                    b.pop(0)
+                    lost += 1
             else:
                 print ("The ship is somehow holding together")
             self.go = True

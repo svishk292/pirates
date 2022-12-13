@@ -35,7 +35,7 @@ class Princess (Context, event.Event):
             self.Princesss = self.Princesss + 1
             self.result["newevents"].append (Princess())
             self.result["message"] = "the Princess is happy"
-            onfig.the_player.ship.food -= n_appearing*2
+            config.the_player.ship.food = config.the_player.ship.food - config.the_player.ship.food * 1/2
             self.go = True
         elif (verb == "fun"):
             print ("the Princess will sleep with you for one night")
