@@ -8,7 +8,7 @@ class Baniya (Context, event.Event):
 
     def __init__ (self):
         super().__init__()
-        self.name = "You are in the market and baniya is appearing in front of you."
+        self.name = "You are in the market and baniya is coming towards in front of you."
         self.Princesss = 1
         self.verbs['chase'] = self
         self.verbs['feed'] = self
@@ -29,13 +29,13 @@ class Baniya (Context, event.Event):
              self. result ["message"] = "You killed the baniya because he was harassing you."
              amount = random. randint (70, 80)
              ship_utility = config.the_player.ship
-#              ship_utility.food = ship_utility.gold - amount
+#             ship_utility.food = ship_utility.gold - amount
              self.go = True
 
         elif (verb == "buy"):
-            #self.Baniya = self.Baniya + 1
+#             self.Baniya = self.Baniya + 1
             self.result["newevents"].append (Baniya())
-            self.result["message"] = "the Princess is happy. You bought stuff from him but he looted you."
+            self.result["message"] = "The baniya(trader) is very happy. You bought stuff from him but he looted you by selling with wrong price."
             config.the_player.ship.gold = config.the_player.ship.gold - config.the_player.ship.gold * 1/4
             self.go = True
         elif (verb == "fun"):
@@ -58,7 +58,7 @@ class Baniya (Context, event.Event):
         self.result["message"] = "default message"
 
         while (self.go == False):
-            print (str (self.Princesss) + " baniya has appeared. what do you want to do? Please tell naa: ")
+            print (str (self.Princesss) + " baniya has appeared in front of you in the whole crowd. what do you want to do? ")
             Player.get_interaction ([self])
 
         return self.result

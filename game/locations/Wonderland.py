@@ -22,7 +22,7 @@ class Wonderland (location.Location):
         self.locations["india"] = India(self)
 
     def enter (self, ship):
-        print ("Arrived at an Wonderland gate")
+        print ("Arrived at the entrance gate of the Wonderland Amusement park.")
 
     def visit (self):
         config.the_player.location = self.starting_location
@@ -39,11 +39,11 @@ class Beach_with_ship (location.SubLocation):
         self.verbs['west'] = self
         
         self.event_chance = 50
-        #self.events.append (seagull.Seagull())
-       # self.events.append(riding_pirates.RidingPirates())
+        self.events.append (seagull.Seagull())
+#         self.events.append(riding_pirates.RidingPirates())
 
     def enter (self):     #go ashore
-        announce ("Arrive at the beach. Your ship is at anchor in the bay of the southern part of ocean.")
+        announce ("Arrive at the beach port. Your ship is at an anchor in the bay of the southern part of ocean.")
     
     def process_verb (self, verb, cmd_list, nouns):
         if (verb == "south"):
@@ -52,7 +52,7 @@ class Beach_with_ship (location.SubLocation):
             config.the_player.visiting = False
         elif (verb == "north"):
             config.the_player.next_loc = self.main_location.locations["rides"]
-            announce ("You walk all the way around the Wonderland to see the rides inside it from the gate. It's not very interesting to look from far.")
+            announce ("You walk all the way around the Wonderland to see the rides inside it from the gate. You see few people riding the roller coster.")
         elif (verb == "east"):
             pass
         elif (verb == "west"):
@@ -73,7 +73,7 @@ class Rides (location.SubLocation):
         self.item_in_tree = Ironsword()
         self.item_in_clothes = Guntrail()
 
-        self.event_chance = 0
+        self.event_chance = 50
         self.events.append(human_killing_dinosaur.HumanKillingDinosaur())
         self.events.append(riding_pirates.RidingPirates())
 
@@ -83,9 +83,9 @@ class Rides (location.SubLocation):
             if isinstance(e, human_killing_dinosaur.HumanKillingDinosaur):
                 rideable = True
         #The description has a base description, followed by variable components.
-        description = "You walk into the rides in the Wonderland amusement park to give a check upon it."
+        description = "You walk into the Wonderland amusement park to give a check upon the rides."
         if rideable == False:
-             description = description + " Nothing around here looks very rideable."
+             description = description + " Nothing around here looks very interesting to ride."
         
         #Add a couple items as a demo. This is kinda awkward but students might want to complicated things.
         '''if self.item_in_tree != None:
@@ -96,9 +96,11 @@ class Rides (location.SubLocation):
     
     def process_verb (self, verb, cmd_list, nouns):
         if (verb == "south"):
-            config.the_player.next_loc = self.main_location.locations["beach"]
+            config.the_player.next_loc = self.main_location.locations["beach"] 
+            announce ("We are returning back to beach")
         if (verb == "west"):
             config.the_player.next_loc = self.main_location.locations["gold"]
+            announce ("You see the piramid from far....you are approaching towards it.")
         #Handle taking items. Demo both "take Ironsword" and "take all"
         '''if verb == "take":
             if self.item_in_tree == None and self.item_in_clothes == None:
@@ -140,11 +142,10 @@ class Gold (location.SubLocation):
         self.item_in_clothes = Guntrail()
 
         self.event_chance = 100
-        #self.events.append(human_killing_dinosaur.HumanKillingDinosaur())
-#         self.events.append(mummyattack.Mummyattack())
-        
-        #self.events.append(snake.Snake())
-        self.events.append(princess.Princess())
+        self.events.append(mummyattack.Mummyattack())
+#         self.events.append(human_killing_dinosaur.HumanKillingDinosaur())
+#         self.events.append(snake.Snake())
+#         self.events.append(princess.Princess())
 
 
     def enter (self):
@@ -153,15 +154,15 @@ class Gold (location.SubLocation):
             if isinstance(e, human_killing_dinosaur.HumanKillingDinosaur):
                 rideable = True
         #The description has a base description, followed by variable components.
-        description = "You walk into the Gold in the Wonderland amusement park to give a check upon it."
+        description = "You walk in the piramid."
         if rideable == False:
-             description = description + " Nothing around here looks very rideable."
+             description = description + " something looks off here. Giving some weird vibes"
         
         #Add a couple items as a demo. This is kinda awkward but students might want to complicated things.
         '''if self.item_in_tree != None:
-            description = description + " You see a " + self.item_in_tree.name + " stuck in a ride."
+            description = description + " You see a " + self.item_in_tree.name + " stuck in this piramid."
         if self.item_in_clothes != None:
-            description = description + " You see a " + self.item_in_clothes.name + " in a pile of shredded iron metal rods of Gold on the amusement park floor."
+            description = description + " You see a " + self.item_in_clothes.name + " in a pile of shredded bodies on the floor."
         announce (description)'''
     
     def process_verb (self, verb, cmd_list, nouns):
@@ -171,7 +172,7 @@ class Gold (location.SubLocation):
             config.the_player.next_loc = self.main_location.locations["beach"]
         elif (verb == "north"):
             config.the_player.next_loc = self.main_location.locations["tokyo"]
-            announce ("Tokyo.")
+            announce ("We see the some beautiful sturcture representing tokyo drift.")
 
             
             
@@ -217,13 +218,12 @@ class Tokyo (location.SubLocation):
         self.item_in_clothes = Guntrail()
 
         self.event_chance = 100
-        self.events.append(disneyland.Disneyland())
+#         self.events.append(disneyland.Disneyland())
 #         self.events.append(disneyland.Disneyland())
         #self.events.append(human_killing_dinosaur.HumanKillingDinosaur())
 #         self.events.append(mummyattack.Mummyattack())
-        
-        #self.events.append(snake.Snake())
-#         self.events.append(princess.Princess())
+        self.events.append(princess.Princess())
+        self.events.append(snake.Snake())
 
 
     def enter (self):
@@ -232,15 +232,15 @@ class Tokyo (location.SubLocation):
             if isinstance(e, human_killing_dinosaur.HumanKillingDinosaur):
                 rideable = True
         #The description has a base description, followed by variable components.
-        description = "You walk into the Gold in the Wonderland amusement park to give a check upon it."
+        description = "You walk into tokyo drift to see what in there."
         if rideable == False:
-             description = description + " Nothing around here looks very rideable."
+             description = description + " Nothing around here? huh hello!!! Is someone here."
         
         #Add a couple items as a demo. This is kinda awkward but students might want to complicated things.
         '''if self.item_in_tree != None:
-            description = description + " You see a " + self.item_in_tree.name + " stuck in a ride."
+            description = description + " You see a " + self.item_in_tree.name + " stuck in the room."
         if self.item_in_clothes != None:
-            description = description + " You see a " + self.item_in_clothes.name + " in a pile of shredded iron metal rods of Gold on the amusement park floor."
+            description = description + " You see a " + self.item_in_clothes.name + " in a smoke layered on the floor."
         announce (description)'''
     
     def process_verb (self, verb, cmd_list, nouns):
@@ -248,7 +248,7 @@ class Tokyo (location.SubLocation):
             config.the_player.next_loc = self.main_location.locations["gold"]
         elif (verb == "east"):
             config.the_player.next_loc = self.main_location.locations["india"]
-            announce ("india.")
+            announce ("This is the market of baniya(trade) they are hypnotised to snatch the money they have.")
         #Handle taking items. Demo both "take Ironsword" and "take all"
         '''if verb == "take":
             if self.item_in_tree == None and self.item_in_clothes == None:

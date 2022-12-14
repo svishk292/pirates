@@ -1,33 +1,28 @@
 from game import event
 import random
 from game.combat import Combat
-from game.combat import Died
+from game.combat import Snakes
 from game.display import announce
+import game.config as config
 
-class Mummyattack (event.Event):
-
+class Mummyattack :
+    
+        
     def __init__ (self):
-        self.name = " died mummies attack on you"
+        self.name = " mummies have attack"
 
     def process (self, world):
         result = {}
-        result["message"] = "the died mummies has been defeated!"
-        mummies = []
-        min = 2
-        uplim = 6
-        if random.randrange(2) == 0:
-            min = 1
-            uplim = 5
-            mummies.append(Died("Mummy leader"))
-            mummies[0].speed = 1.2*mummies[0].speed
-            mummies[0].health = 2*mummies[0].health
-        n_appearing = random.randrange(min, uplim)
+        result["message"] = "mummies has been defeated! ...Those look very scary! \n Your received the gold as your reward."
+        monsters = []
+        n_appearing = random.randrange(2,5)
         n = 1
         while n <= n_appearing:
-            mummies.append(Died("Died mummy "+str(n)))
+            monsters.append(Snakes(" human eating mummies"+str(n)))
             n += 1
-        announce ("You are attacked by a group of the died mummies because you have entered their piramid!")
-        Combat(mummies).combat()
-        result["newevents"] = [ self ]
+        announce ("The crew is attacked by a troop of mummies!")
+        Combat(monsters).combat()
+        result["newevents"] = [ ]
+        config.the_player.ship.gold += n_appearing*2
+        
         return result
-

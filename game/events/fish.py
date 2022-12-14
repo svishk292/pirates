@@ -9,7 +9,7 @@ class Fish (Context, event.Event):
     def __init__ (self):
         super().__init__()
         self.name = "Fish visitor"
-        self.Fishs = 2
+        self.Fishs = 1
         self.verbs['chase'] = self
         self.verbs['feed'] = self
         self.verbs['help'] = self
@@ -25,7 +25,7 @@ class Fish (Context, event.Event):
         elif (verb == "kill"):
              self. result ["newevents"]. append (Fish())
              self. result ["message"] = "You have caught the Fish. Now it's your dinner for today"
-             amount = random. randint (12, 18)
+             amount = random. randint (16, 19)
              ship_utility = config.the_player.ship
              ship_utility.food = ship_utility.food + amount
              self.go = True
