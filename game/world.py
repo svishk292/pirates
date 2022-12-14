@@ -53,7 +53,7 @@ class World (Context):
         whirl = whirlpool.Whirlpool (self.startx + 1, self.starty, self)
         self.locs[self.startx+1][self.starty] = whirl
 
-        #Test island: always start off next to a test island. Swap in your island to test yours.
+        #Test island: always start off next to a test island. Swap in your island to test yours.  ######### PUT IT NOW IN THE COMMENT IF YOU DON'T WANT
         testland = wonderland.Wonderland (self.startx, self.starty+1, self)
         self.locs[self.startx][self.starty+1] = testland
         
