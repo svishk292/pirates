@@ -61,15 +61,15 @@ class World (Context):
         self.locs[self.startx][self.starty+3] = testland
 
         self.events = []
-       # self.events.append (lucky.LuckyDay())
-        #self.events.append (nothing.Nothing())
-        #self.events.append (seagull.Seagull())
-        #self.events.append (seagull.Seagull())
-        #self.events.append (seagull.Seagull())
-        #self.events.append (sickness.Sickness())
-        #self.events.append (drowned_pirates.DrownedPirates())
-        #self.events.append (riding_pirates.RidingPirates())
-        self.events.append (fish.Fish())
+        self.events.append (lucky.LuckyDay())
+        self.events.append (nothing.Nothing())
+        self.events.append (seagull.Seagull())
+        self.events.append (seagull.Seagull())
+        self.events.append (seagull.Seagull())
+        self.events.append (sickness.Sickness())
+        self.events.append (drowned_pirates.DrownedPirates())
+#         self.events.append (riding_pirates.RidingPirates())
+#         self.events.append (fish.Fish())
         self.nouns["world"] = self
 
     def get_day (self):

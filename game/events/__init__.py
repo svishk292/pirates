@@ -10,4 +10,6 @@ __all__ = ["drowned_pirates",
 "fish",
 "snake",
 "mummyattack",
-"princess"]
+"princess",
+"disneyland",
+"baniya"]

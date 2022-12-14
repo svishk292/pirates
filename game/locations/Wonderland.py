@@ -217,6 +217,8 @@ class Tokyo (location.SubLocation):
         self.item_in_clothes = Guntrail()
 
         self.event_chance = 100
+        self.events.append(disneyland.Disneyland())
+#         self.events.append(disneyland.Disneyland())
         #self.events.append(human_killing_dinosaur.HumanKillingDinosaur())
 #         self.events.append(mummyattack.Mummyattack())
         
@@ -288,7 +290,8 @@ class India (location.SubLocation):
         self.item_in_tree = Ironsword()
         self.item_in_clothes = Guntrail()
 
-        self.event_chance = 0
+        self.event_chance = 100
+        self.events.append(baniya.Baniya())
 #         self.events.append(human_killing_dinosaur.HumanKillingDinosaur())
 #         self.events.append(riding_pirates.RidingPirates())
 
